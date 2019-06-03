@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <select id="findUserById" parameterType="java.lang.Integer" resultType="com.itheima.pojo.User">
+      select * from user where id = #{id}
+    </select>
+    <select id="findUserByName" parameterType="java.lang.String" resultType="com.itheima.pojo.User">
+<!--        select * from user where username like '%${value}%'-->
+        select * from user where username like #{name}
+    </select>
+    <insert id="insertUser" parameterType="com.itheima.pojo.User">
+        <selectKey keyProperty="id" keyColumn="id" resultType="java.lang.String" order="BEFORE">
+--             SELECT LAST_INSERT_ID();
+            SELECT UUID();
+
+        </selectKey>
+        insert into user values (#{id},#{username},#{birthday},#{sex},#{address})
+    </insert>
+    <update id="updateUser" parameterType="com.itheima.pojo.User">
+        update user set username=#{username},sex=#{sex},address=#{address}
+        where id=#{id}
+    </update>
+    <delete id="deleteUserById" parameterType="java.lang.String">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
