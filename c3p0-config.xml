@@ -2,3 +2,4 @@ driverclass=com.mysql.jdbc.Driver
 url=jdbc:mysql://127.0.0.1:3306/day18
 username=root
 password=root
+นþนþฮาภดตทยามห
